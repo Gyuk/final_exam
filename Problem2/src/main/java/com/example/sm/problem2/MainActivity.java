@@ -10,7 +10,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MyBaseAdapter adapter;
+    ArrayList<Employee> emp_list = new ArrayList<Employee>();
     ListView listview;
+    String name;
+    int age, salary;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,32 +32,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText edit_age = (EditText) findViewById(R.id.edit_age);
         EditText edit_salary = (EditText) findViewById(R.id.edit_salary);
 
-        Employee employee;
+        name = edit_name.getText().toString();
+        age = Integer.parseInt(edit_age.getText().toString());
+        salary = Integer.parseInt(edit_salary.getText().toString());
 
+        Employee employee = (null);
         switch (v.getId()){
             case R.id.btn_inc:
-                // need something here
+                employee.increase();
+                salary = employee.getSalary();
                 break;
 
             case R.id.btn_dec:
-                // need something here
+                employee.decrease();
+                salary = employee.getSalary();
                 break;
 
             case R.id.btn_store:
-                // need something here
+                employee = new Employee(name , age, salary);
+                emp_list.add(employee);
                 break;
 
             case R.id.btn_modify:
-                // need something here
+
+
                 break;
 
             case R.id.btn_delete:
-                // need something here
+                name = edit_name.getText().toString();
+                for (int i=0; i< emp_list.size(); i++){
+                    if(emp_list.get(i).getName().equals(name)){
+                        emp_list.remove(emp_list.indexOf(i));
+                    }
+                }
                 break;
         }
     }
 }
-
 interface Payment {
     void increase();
     void decrease();

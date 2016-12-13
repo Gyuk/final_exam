@@ -6,6 +6,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -66,8 +67,13 @@ abstract class Person{
 class Customer extends Person{
 
     String name;
+    int money, spent_money;
     Customer(String name){
         this.name = name;
+        this.spent_money = super.spent_money;
+    }
+    public void work(){
+
     }
 
     // need something here
@@ -82,7 +88,18 @@ class Manager extends Person{
     }
 
     void sort(){ // 직접 소팅 알고리즘을 이용하여 코딩해야함. 자바 기본 정렬 메소드 이용시 감
-
+        for(int i=0; i< list.size(); i++){
+            for(int j=i+1; j< list.size(); j++){
+                int tmp;
+                if(list.get(i).spent_money<= list.get(j).spent_money)
+                    continue;
+                else{
+                    tmp = list.get(i).spent_money;
+                    list.get(i).spent_money = list.get(j).spent_money;
+                    list.get(j).spent_money = tmp;
+                }
+            }
+        }
         // need something here
 
     }

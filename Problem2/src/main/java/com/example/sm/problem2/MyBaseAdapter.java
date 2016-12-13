@@ -67,5 +67,15 @@ public class MyBaseAdapter extends BaseAdapter implements AdapterView.OnItemClic
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // need something here
+        final int pos = position ;
+        final TextView emp_name = (TextView) convertView.findViewById(R.id.text_employeeName);
+        final TextView emp_age = (TextView) convertView.findViewById(R.id.text_employeeAge);
+        final TextView emp_salary = (TextView) convertView.findViewById(R.id.text_employeeSalary);
+
+        emp_name.setText(mData.get(pos).getName());
+        emp_age.setText(mData.get(pos).getAge());
+        emp_salary.setText(mData.get(pos).getSalary());
+
+        return convertView;
     }
 }
